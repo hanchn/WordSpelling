@@ -16,6 +16,7 @@ function App() {
   const [selectedBook, setSelectedBook] = useState('');
   const [selectedFile, setSelectedFile] = useState('');
   const [difficulty, setDifficulty] = useState('simple'); // simple, general, medium, hard
+  const [wordCountLimit, setWordCountLimit] = useState(10); // Default 10 words
 
   const inputRefs = useRef([]);
 
@@ -66,7 +67,12 @@ function App() {
         return;
       }
 
-      const shuffled = data.sort(() => Math.random() - 0.5);
+      let shuffled = data.sort(() => Math.random() - 0.5);
+      // Limit word count
+      if (wordCountLimit > 0) {
+        shuffled = shuffled.slice(0, wordCountLimit);
+      }
+      
       setWords(shuffled);
       setMistakes([]);
       setCurrentIndex(0);
@@ -300,6 +306,21 @@ function App() {
             )}
 
             <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Word Count</label>
+              <select 
+                value={wordCountLimit}
+                onChange={(e) => setWordCountLimit(Number(e.target.value))}
+                className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+              >
+                <option value="5">5 Words</option>
+                <option value="10">10 Words</option>
+                <option value="20">20 Words</option>
+                <option value="50">50 Words</option>
+                <option value="0">All Words</option>
+              </select>
+            </div>
+
+            <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Difficulty</label>
               <select 
                 value={difficulty}
@@ -327,10 +348,33 @@ function App() {
 
   // Finished Screen
   if (isGameFinished) {
+    const total = words.length;
+    const correctCount = total - mistakes.length;
+    const score = Math.round((correctCount / total) * 100);
+    const isPerfect = score === 100;
+
     return (
       <div className="min-h-screen bg-slate-50 flex flex-col items-center p-8 font-sans print:bg-white print:p-0">
-        <div className="max-w-4xl w-full bg-white rounded-2xl shadow-xl p-8 print:shadow-none print:p-4">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center print:hidden">Session Complete!</h2>
+        <div className="max-w-4xl w-full bg-white rounded-2xl shadow-xl p-8 print:shadow-none print:p-4 relative overflow-hidden">
+          
+          {/* Score Effects */}
+          <div className="print:hidden mb-8 text-center animate-fade-in-up">
+            {isPerfect ? (
+              <div className="flex flex-col items-center">
+                <div className="text-8xl mb-4 animate-bounce">👍</div>
+                <h2 className="text-4xl font-bold text-green-600 mb-2">Perfect! 100%</h2>
+                <p className="text-gray-600 text-lg">You are amazing!</p>
+              </div>
+            ) : (
+              <div className="flex flex-col items-center">
+                <div className="text-8xl mb-4 animate-pulse">💪</div>
+                <h2 className="text-4xl font-bold text-blue-600 mb-2">Score: {score}</h2>
+                <p className="text-gray-600 text-lg">Great job! Keep practicing!</p>
+              </div>
+            )}
+          </div>
+
+          <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center print:hidden hidden">Session Complete!</h2>
           <h2 className="hidden print:block text-2xl font-bold text-black mb-4 text-center">Word Spelling Mistakes</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 print:hidden">
