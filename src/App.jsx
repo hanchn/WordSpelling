@@ -448,6 +448,17 @@ function App() {
               isHint = true;
             }
 
+            // Calculate font size based on word length
+            const wordLength = currentWordObj.word.length;
+            let fontSizeClass = "text-3xl md:text-4xl";
+            if (wordLength > 10) fontSizeClass = "text-2xl md:text-3xl";
+            if (wordLength > 14) fontSizeClass = "text-xl md:text-2xl";
+
+            // Calculate width based on word length
+            let widthClass = "w-12 h-16 md:w-14 md:h-20";
+            if (wordLength > 10) widthClass = "w-10 h-14 md:w-12 md:h-16";
+            if (wordLength > 14) widthClass = "w-8 h-12 md:w-10 md:h-14";
+
             return (
               <div key={idx} className="flex flex-col items-center gap-2">
                 <input
@@ -458,7 +469,7 @@ function App() {
                   disabled={isRevealed || isCorrect || gameState === 'checking'}
                   onChange={(e) => handleInput(idx, e.target.value)}
                   onKeyDown={(e) => handleKeyDown(idx, e)}
-                  className={`w-12 h-16 md:w-14 md:h-20 text-3xl md:text-4xl text-center border-b-4 outline-none transition-all rounded-t-lg
+                  className={`${widthClass} ${fontSizeClass} text-center border-b-4 outline-none transition-all rounded-t-lg
                     ${isRevealed 
                       ? 'border-gray-300 bg-gray-50 text-gray-500' 
                       : isCorrect
