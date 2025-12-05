@@ -12,14 +12,15 @@ function App() {
   const [isGameFinished, setIsGameFinished] = useState(false);
   const [showHint, setShowHint] = useState(false);
   
-  const [books, setBooks] = useState([]);
+  const [structure, setStructure] = useState({});
   const [selectedBook, setSelectedBook] = useState('');
+  const [selectedFile, setSelectedFile] = useState('');
   const [difficulty, setDifficulty] = useState('simple'); // simple, general, medium, hard
 
   const inputRefs = useRef([]);
 
   useEffect(() => {
-    fetchBooks();
+    fetchStructure();
   }, []);
 
   useEffect(() => {
@@ -28,13 +29,18 @@ function App() {
     }
   }, [currentIndex, gameState]); 
 
-  const fetchBooks = async () => {
+  const fetchStructure = async () => {
     try {
-      const res = await fetch('http://localhost:3002/api/books');
+      const res = await fetch('http://localhost:3002/api/structure');
       const data = await res.json();
-      setBooks(data);
+      setStructure(data);
+      // Optionally select first book
+      const books = Object.keys(data);
+      if (books.length > 0) {
+        // setSelectedBook(books[0]);
+      }
     } catch (error) {
-      console.error('Failed to fetch books', error);
+      console.error('Failed to fetch structure', error);
     }
   };
 
@@ -42,14 +48,20 @@ function App() {
     setLoading(true);
     try {
       let url = 'http://localhost:3002/api/words';
+      const params = new URLSearchParams();
+      
       if (selectedBook) {
-        url += `?book=${encodeURIComponent(selectedBook)}`;
+        params.append('book', selectedBook);
+        if (selectedFile) {
+          params.append('file', selectedFile);
+        }
       }
-      const res = await fetch(url);
+      
+      const res = await fetch(`${url}?${params.toString()}`);
       const data = await res.json();
       
       if (data.length === 0) {
-        alert('No words found in this book!');
+        alert('No words found!');
         setLoading(false);
         return;
       }

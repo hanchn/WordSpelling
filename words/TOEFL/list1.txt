@@ -1,0 +1,2 @@
+bacteria # 细菌
+balance # 平衡
