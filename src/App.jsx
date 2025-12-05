@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Volume2, RefreshCw, ArrowRight, CheckCircle2, XCircle, Eye } from 'lucide-react';
+import { Volume2, RefreshCw, ArrowRight, CheckCircle2, XCircle, Eye, Printer } from 'lucide-react';
 
 function App() {
   const [words, setWords] = useState([]);
