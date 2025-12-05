@@ -3,23 +3,18 @@
     "bookId": "KET",
     "unitId": "unit2",
     "title": "KET Unit 2: Food and Drink",
-    "version": "1.0"
+    "version": "1.1"
   },
   "words": [
     {"word": "apple", "definition": "苹果", "phonetic": "/ˈæp.əl/", "examples": []},
-    {"word": "banana", "definition": "香蕉", "phonetic": "/bəˈnɑː.nə/", "examples": []},
-    {"word": "biscuit", "definition": "饼干", "phonetic": "/ˈbɪs.kɪt/", "examples": []},
-    {"word": "bread", "definition": "面包", "phonetic": "/bred/", "examples": []},
-    {"word": "breakfast", "definition": "早餐", "phonetic": "/ˈbrek.fəst/", "examples": []},
-    {"word": "butter", "definition": "黄油", "phonetic": "/ˈbʌt.ər/", "examples": []},
-    {"word": "cake", "definition": "蛋糕", "phonetic": "/keɪk/", "examples": []},
-    {"word": "carrot", "definition": "胡萝卜", "phonetic": "/ˈkær.ət/", "examples": []},
-    {"word": "cheese", "definition": "奶酪", "phonetic": "/tʃiːz/", "examples": []},
-    {"word": "chicken", "definition": "鸡肉", "phonetic": "/ˈtʃɪk.ɪn/", "examples": []},
-    {"word": "chocolate", "definition": "巧克力", "phonetic": "/ˈtʃɒk.lət/", "examples": []},
-    {"word": "coffee", "definition": "咖啡", "phonetic": "/ˈkɒf.i/", "examples": []},
-    {"word": "dinner", "definition": "晚餐", "phonetic": "/ˈdɪn.ər/", "examples": []},
     {"word": "egg", "definition": "鸡蛋", "phonetic": "/eɡ/", "examples": []},
-    {"word": "fish", "definition": "鱼", "phonetic": "/fɪʃ/", "examples": []}
+    {"word": "fish", "definition": "鱼", "phonetic": "/fɪʃ/", "examples": []},
+    {"word": "milk", "definition": "牛奶", "phonetic": "/mɪlk/", "examples": []},
+    {"word": "rice", "definition": "米饭", "phonetic": "/raɪs/", "examples": []},
+    {"word": "water", "definition": "水", "phonetic": "/ˈwɔː.tər/", "examples": []},
+    {"word": "tea", "definition": "茶", "phonetic": "/tiː/", "examples": []},
+    {"word": "cake", "definition": "蛋糕", "phonetic": "/keɪk/", "examples": []},
+    {"word": "meat", "definition": "肉", "phonetic": "/miːt/", "examples": []},
+    {"word": "pear", "definition": "梨", "phonetic": "/peər/", "examples": []}
   ]
 }

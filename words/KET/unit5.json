@@ -2,34 +2,19 @@
   "meta": {
     "bookId": "KET",
     "unitId": "unit5",
-    "title": "KET Unit 5: Health and Body",
-    "version": "1.0"
+    "title": "KET Unit 5: Body",
+    "version": "1.1"
   },
   "words": [
-    {"word": "accident", "definition": "事故", "phonetic": "/ˈæk.sɪ.dənt/", "examples": []},
-    {"word": "ambulance", "definition": "救护车", "phonetic": "/ˈæm.bjə.ləns/", "examples": []},
-    {"word": "appointment", "definition": "预约", "phonetic": "/əˈpɔɪnt.mənt/", "examples": []},
-    {"word": "arm", "definition": "手臂", "phonetic": "/ɑːm/", "examples": []},
-    {"word": "back", "definition": "背部", "phonetic": "/bæk/", "examples": []},
-    {"word": "blood", "definition": "血液", "phonetic": "/blʌd/", "examples": []},
-    {"word": "body", "definition": "身体", "phonetic": "/ˈbɒd.i/", "examples": []},
-    {"word": "brain", "definition": "大脑", "phonetic": "/breɪn/", "examples": []},
-    {"word": "cold", "definition": "感冒", "phonetic": "/kəʊld/", "examples": []},
-    {"word": "danger", "definition": "危险", "phonetic": "/ˈdeɪn.dʒər/", "examples": []},
-    {"word": "dentist", "definition": "牙医", "phonetic": "/ˈden.tɪst/", "examples": []},
-    {"word": "doctor", "definition": "医生", "phonetic": "/ˈdɒk.tər/", "examples": []},
-    {"word": "ear", "definition": "耳朵", "phonetic": "/ɪər/", "examples": []},
-    {"word": "exercise", "definition": "运动", "phonetic": "/ˈek.sə.saɪz/", "examples": []},
-    {"word": "eye", "definition": "眼睛", "phonetic": "/aɪ/", "examples": []},
-    {"word": "face", "definition": "脸", "phonetic": "/feɪs/", "examples": []},
-    {"word": "finger", "definition": "手指", "phonetic": "/ˈfɪŋ.ɡər/", "examples": []},
-    {"word": "foot", "definition": "脚", "phonetic": "/fʊt/", "examples": []},
-    {"word": "hair", "definition": "头发", "phonetic": "/heər/", "examples": []},
-    {"word": "hand", "definition": "手", "phonetic": "/hænd/", "examples": []},
     {"word": "head", "definition": "头", "phonetic": "/hed/", "examples": []},
-    {"word": "health", "definition": "健康", "phonetic": "/helθ/", "examples": []},
-    {"word": "hospital", "definition": "医院", "phonetic": "/ˈhɒs.pɪ.təl/", "examples": []},
+    {"word": "face", "definition": "脸", "phonetic": "/feɪs/", "examples": []},
+    {"word": "eye", "definition": "眼睛", "phonetic": "/aɪ/", "examples": []},
+    {"word": "nose", "definition": "鼻子", "phonetic": "/nəʊz/", "examples": []},
+    {"word": "mouth", "definition": "嘴巴", "phonetic": "/maʊθ/", "examples": []},
+    {"word": "ear", "definition": "耳朵", "phonetic": "/ɪər/", "examples": []},
+    {"word": "hand", "definition": "手", "phonetic": "/hænd/", "examples": []},
+    {"word": "foot", "definition": "脚", "phonetic": "/fʊt/", "examples": []},
     {"word": "leg", "definition": "腿", "phonetic": "/leɡ/", "examples": []},
-    {"word": "medicine", "definition": "药", "phonetic": "/ˈmed.ɪ.sən/", "examples": []}
+    {"word": "arm", "definition": "手臂", "phonetic": "/ɑːm/", "examples": []}
   ]
 }

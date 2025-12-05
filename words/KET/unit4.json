@@ -2,34 +2,19 @@
   "meta": {
     "bookId": "KET",
     "unitId": "unit4",
-    "title": "KET Unit 4: Travel and Transport",
-    "version": "1.0"
+    "title": "KET Unit 4: Travel",
+    "version": "1.1"
   },
   "words": [
-    {"word": "airport", "definition": "机场", "phonetic": "/ˈeə.pɔːt/", "examples": []},
-    {"word": "ambulance", "definition": "救护车", "phonetic": "/ˈæm.bjə.ləns/", "examples": []},
-    {"word": "bicycle", "definition": "自行车", "phonetic": "/ˈbaɪ.sɪ.kəl/", "examples": []},
-    {"word": "boat", "definition": "船", "phonetic": "/bəʊt/", "examples": []},
-    {"word": "bridge", "definition": "桥", "phonetic": "/brɪdʒ/", "examples": []},
     {"word": "bus", "definition": "公共汽车", "phonetic": "/bʌs/", "examples": []},
     {"word": "car", "definition": "汽车", "phonetic": "/kɑːr/", "examples": []},
-    {"word": "delay", "definition": "延误", "phonetic": "/dɪˈleɪ/", "examples": []},
-    {"word": "driver", "definition": "司机", "phonetic": "/ˈdraɪ.vər/", "examples": []},
-    {"word": "engine", "definition": "引擎", "phonetic": "/ˈen.dʒɪn/", "examples": []},
-    {"word": "flight", "definition": "航班", "phonetic": "/flaɪt/", "examples": []},
-    {"word": "garage", "definition": "车库", "phonetic": "/ˈɡær.ɑːʒ/", "examples": []},
-    {"word": "helicopter", "definition": "直升机", "phonetic": "/ˈhel.ɪˌkɒp.tər/", "examples": []},
-    {"word": "journey", "definition": "旅程", "phonetic": "/ˈdʒɜː.ni/", "examples": []},
-    {"word": "luggage", "definition": "行李", "phonetic": "/ˈlʌɡ.ɪdʒ/", "examples": []},
-    {"word": "map", "definition": "地图", "phonetic": "/mæp/", "examples": []},
-    {"word": "passenger", "definition": "乘客", "phonetic": "/ˈpæs.ən.dʒər/", "examples": []},
-    {"word": "pilot", "definition": "飞行员", "phonetic": "/ˈpaɪ.lət/", "examples": []},
-    {"word": "railway", "definition": "铁路", "phonetic": "/ˈreɪl.weɪ/", "examples": []},
-    {"word": "roundabout", "definition": "环岛", "phonetic": "/ˈraʊnd.ə.baʊt/", "examples": []},
-    {"word": "station", "definition": "车站", "phonetic": "/ˈsteɪ.ʃən/", "examples": []},
-    {"word": "ticket", "definition": "票", "phonetic": "/ˈtɪk.ɪt/", "examples": []},
-    {"word": "traffic", "definition": "交通", "phonetic": "/ˈtræf.ɪk/", "examples": []},
+    {"word": "bike", "definition": "自行车", "phonetic": "/baɪk/", "examples": []},
+    {"word": "boat", "definition": "船", "phonetic": "/bəʊt/", "examples": []},
+    {"word": "ship", "definition": "轮船", "phonetic": "/ʃɪp/", "examples": []},
+    {"word": "taxi", "definition": "出租车", "phonetic": "/ˈtæk.si/", "examples": []},
     {"word": "train", "definition": "火车", "phonetic": "/treɪn/", "examples": []},
-    {"word": "wheel", "definition": "轮子", "phonetic": "/wiːl/", "examples": []}
+    {"word": "fly", "definition": "飞", "phonetic": "/flaɪ/", "examples": []},
+    {"word": "trip", "definition": "旅行", "phonetic": "/trɪp/", "examples": []},
+    {"word": "sea", "definition": "海", "phonetic": "/siː/", "examples": []}
   ]
 }

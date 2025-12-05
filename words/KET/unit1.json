@@ -3,23 +3,18 @@
     "bookId": "KET",
     "unitId": "unit1",
     "title": "KET Unit 1: People and Family",
-    "version": "1.0"
+    "version": "1.1"
   },
   "words": [
-    {"word": "aunt", "definition": "姨母；姑母；伯母", "phonetic": "/ɑːnt/", "examples": []},
-    {"word": "brother", "definition": "兄弟", "phonetic": "/ˈbrʌð.ər/", "examples": []},
-    {"word": "cousin", "definition": "堂（或表）兄弟；堂（或表）姐妹", "phonetic": "/ˈkʌz.ən/", "examples": []},
-    {"word": "daughter", "definition": "女儿", "phonetic": "/ˈdɔː.tər/", "examples": []},
-    {"word": "father", "definition": "父亲", "phonetic": "/ˈfɑː.ðər/", "examples": []},
+    {"word": "dad", "definition": "爸爸", "phonetic": "/dæd/", "examples": []},
+    {"word": "mom", "definition": "妈妈", "phonetic": "/mɒm/", "examples": []},
+    {"word": "boy", "definition": "男孩", "phonetic": "/bɔɪ/", "examples": []},
+    {"word": "girl", "definition": "女孩", "phonetic": "/ɡɜːl/", "examples": []},
+    {"word": "baby", "definition": "婴儿", "phonetic": "/ˈbeɪ.bi/", "examples": []},
+    {"word": "man", "definition": "男人", "phonetic": "/mæn/", "examples": []},
+    {"word": "woman", "definition": "女人", "phonetic": "/ˈwʊm.ən/", "examples": []},
     {"word": "friend", "definition": "朋友", "phonetic": "/frend/", "examples": []},
-    {"word": "grandchild", "definition": "孙子；孙女；外孙；外孙女", "phonetic": "/ˈɡræn.tʃaɪld/", "examples": []},
-    {"word": "grandfather", "definition": "（外）祖父", "phonetic": "/ˈɡræn.fɑː.ðər/", "examples": []},
-    {"word": "grandmother", "definition": "（外）祖母", "phonetic": "/ˈɡræn.mʌð.ər/", "examples": []},
-    {"word": "husband", "definition": "丈夫", "phonetic": "/ˈhʌz.bənd/", "examples": []},
-    {"word": "mother", "definition": "母亲", "phonetic": "/ˈmʌð.ər/", "examples": []},
-    {"word": "sister", "definition": "姐妹", "phonetic": "/ˈsɪs.tər/", "examples": []},
-    {"word": "son", "definition": "儿子", "phonetic": "/sʌn/", "examples": []},
-    {"word": "uncle", "definition": "伯父；叔父；舅父；姑父；姨父", "phonetic": "/ˈʌŋ.kəl/", "examples": []},
-    {"word": "wife", "definition": "妻子", "phonetic": "/waɪf/", "examples": []}
+    {"word": "name", "definition": "名字", "phonetic": "/neɪm/", "examples": []},
+    {"word": "home", "definition": "家", "phonetic": "/həʊm/", "examples": []}
   ]
 }
