@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "bookId": "PET",
+    "unitId": "unit4",
+    "title": "PET Unit 4: Education",
+    "version": "1.0"
+  },
+  "words": [
+    {"word": "absent", "definition": "缺席的", "phonetic": "/ˈæb.sənt/", "examples": []},
+    {"word": "advanced", "definition": "高级的", "phonetic": "/ədˈvɑːnst/", "examples": []},
+    {"word": "beginner", "definition": "初学者", "phonetic": "/bɪˈɡɪn.ər/", "examples": []},
+    {"word": "biology", "definition": "生物学", "phonetic": "/baɪˈɒl.ə.dʒi/", "examples": []},
+    {"word": "certificate", "definition": "证书", "phonetic": "/səˈtɪf.ɪ.kət/", "examples": []},
+    {"word": "chemistry", "definition": "化学", "phonetic": "/ˈkem.ɪ.stri/", "examples": []},
+    {"word": "coach", "definition": "教练；辅导", "phonetic": "/kəʊtʃ/", "examples": []},
+    {"word": "college", "definition": "学院", "phonetic": "/ˈkɒl.ɪdʒ/", "examples": []},
+    {"word": "composition", "definition": "作文", "phonetic": "/ˌkɒm.pəˈzɪʃ.ən/", "examples": []},
+    {"word": "course", "definition": "课程", "phonetic": "/kɔːs/", "examples": []},
+    {"word": "curriculum", "definition": "课程大纲", "phonetic": "/kəˈrɪk.jə.ləm/", "examples": []},
+    {"word": "degree", "definition": "学位", "phonetic": "/dɪˈɡriː/", "examples": []},
+    {"word": "diploma", "definition": "文凭", "phonetic": "/dɪˈpləʊ.mə/", "examples": []},
+    {"word": "essay", "definition": "论文", "phonetic": "/ˈes.eɪ/", "examples": []},
+    {"word": "geography", "definition": "地理", "phonetic": "/dʒiˈɒɡ.rə.fi/", "examples": []},
+    {"word": "graduate", "definition": "毕业生", "phonetic": "/ˈɡrædʒ.u.ət/", "examples": []},
+    {"word": "history", "definition": "历史", "phonetic": "/ˈhɪs.tər.i/", "examples": []},
+    {"word": "instructor", "definition": "讲师", "phonetic": "/ɪnˈstrʌk.tər/", "examples": []},
+    {"word": "intermediate", "definition": "中级的", "phonetic": "/ˌɪn.təˈmiː.di.ət/", "examples": []},
+    {"word": "laboratory", "definition": "实验室", "phonetic": "/ləˈbɒr.ə.tər.i/", "examples": []},
+    {"word": "lecture", "definition": "讲座", "phonetic": "/ˈlek.tʃər/", "examples": []},
+    {"word": "mark", "definition": "分数", "phonetic": "/mɑːk/", "examples": []},
+    {"word": "mathematics", "definition": "数学", "phonetic": "/ˌmæθˈmæt.ɪks/", "examples": []},
+    {"word": "physics", "definition": "物理", "phonetic": "/ˈfɪz.ɪks/", "examples": []},
+    {"word": "qualification", "definition": "资格", "phonetic": "/ˌkwɒl.ɪ.fɪˈkeɪ.ʃən/", "examples": []}
+  ]
+}

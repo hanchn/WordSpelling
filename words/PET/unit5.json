@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "bookId": "PET",
+    "unitId": "unit5",
+    "title": "PET Unit 5: Work and Jobs",
+    "version": "1.0"
+  },
+  "words": [
+    {"word": "actor", "definition": "演员", "phonetic": "/ˈæk.tər/", "examples": []},
+    {"word": "application", "definition": "申请", "phonetic": "/ˌæp.lɪˈkeɪ.ʃən/", "examples": []},
+    {"word": "architect", "definition": "建筑师", "phonetic": "/ˈɑː.kɪ.tekt/", "examples": []},
+    {"word": "assistant", "definition": "助理", "phonetic": "/əˈsɪs.tənt/", "examples": []},
+    {"word": "boss", "definition": "老板", "phonetic": "/bɒs/", "examples": []},
+    {"word": "businessman", "definition": "商人", "phonetic": "/ˈbɪz.nɪs.mən/", "examples": []},
+    {"word": "career", "definition": "职业生涯", "phonetic": "/kəˈrɪər/", "examples": []},
+    {"word": "chef", "definition": "厨师", "phonetic": "/ʃef/", "examples": []},
+    {"word": "colleague", "definition": "同事", "phonetic": "/ˈkɒl.iːɡ/", "examples": []},
+    {"word": "company", "definition": "公司", "phonetic": "/ˈkʌm.pə.ni/", "examples": []},
+    {"word": "contract", "definition": "合同", "phonetic": "/ˈkɒn.trækt/", "examples": []},
+    {"word": "crew", "definition": "全体船员/机组人员", "phonetic": "/kruː/", "examples": []},
+    {"word": "department", "definition": "部门", "phonetic": "/dɪˈpɑːt.mənt/", "examples": []},
+    {"word": "designer", "definition": "设计师", "phonetic": "/dɪˈzaɪ.nər/", "examples": []},
+    {"word": "director", "definition": "导演；总监", "phonetic": "/daɪˈrek.tər/", "examples": []},
+    {"word": "earn", "definition": "赚取", "phonetic": "/ɜːn/", "examples": []},
+    {"word": "employee", "definition": "雇员", "phonetic": "/ɪmˈplɔɪ.iː/", "examples": []},
+    {"word": "employer", "definition": "雇主", "phonetic": "/ɪmˈplɔɪ.ər/", "examples": []},
+    {"word": "engineer", "definition": "工程师", "phonetic": "/ˌen.dʒɪˈnɪər/", "examples": []},
+    {"word": "firefighter", "definition": "消防员", "phonetic": "/ˈfaɪəˌfaɪ.tər/", "examples": []},
+    {"word": "income", "definition": "收入", "phonetic": "/ˈɪn.kʌm/", "examples": []},
+    {"word": "industry", "definition": "行业", "phonetic": "/ˈɪn.də.stri/", "examples": []},
+    {"word": "interview", "definition": "面试", "phonetic": "/ˈɪn.tə.vjuː/", "examples": []},
+    {"word": "journalist", "definition": "记者", "phonetic": "/ˈdʒɜː.nə.lɪst/", "examples": []},
+    {"word": "lawyer", "definition": "律师", "phonetic": "/ˈlɔɪ.ər/", "examples": []}
+  ]
+}
