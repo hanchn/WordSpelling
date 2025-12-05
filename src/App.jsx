@@ -338,20 +338,20 @@ function App() {
                <div className="text-gray-600">Total Words</div>
              </div>
              <div className="bg-green-50 p-6 rounded-xl text-center">
-               <div className="text-4xl font-bold text-green-600 mb-2">{words.length - skippedWords.length}</div>
-               <div className="text-gray-600">Correct</div>
+               <div className="text-4xl font-bold text-green-600 mb-2">{words.length - mistakes.length}</div>
+               <div className="text-gray-600">Correct on First Try</div>
              </div>
              <div className="bg-red-50 p-6 rounded-xl text-center">
-               <div className="text-4xl font-bold text-red-600 mb-2">{skippedWords.length}</div>
-               <div className="text-gray-600">Passed / Wrong</div>
+               <div className="text-4xl font-bold text-red-600 mb-2">{mistakes.length}</div>
+               <div className="text-gray-600">Mistakes</div>
              </div>
           </div>
 
-          {skippedWords.length > 0 && (
+          {mistakes.length > 0 && (
             <div className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-700 mb-4">Review Mistakes (Passed Words)</h3>
+              <h3 className="text-xl font-semibold text-gray-700 mb-4">Review Mistakes</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {skippedWords.map((item, idx) => (
+                {mistakes.map((item, idx) => (
                   <div key={idx} className="border border-red-100 bg-red-50 rounded-lg p-4 flex flex-col gap-2">
                     <div className="flex justify-between items-start">
                       <span className="text-lg font-bold text-red-700">{item.word}</span>
@@ -373,7 +373,7 @@ function App() {
             >
               <RefreshCw size={18} /> Back to Menu
             </button>
-            {skippedWords.length > 0 && (
+            {mistakes.length > 0 && (
               <button 
                 onClick={() => restartGame(true)}
                 className="px-6 py-3 bg-red-600 text-white rounded-full font-medium hover:bg-red-700 transition-colors flex items-center gap-2"
