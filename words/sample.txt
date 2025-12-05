@@ -1,0 +1,15 @@
+test # 试验；测试；检测
+spelling # 拼写；拼字
+computer # 计算机；电脑
+algorithm # 算法；互算法
+developer # 开发者；程序员
+challenge # 挑战；怀疑
+interface # 界面；接口
+function # 函数；功能
+variable # 变量；可变的
+constant # 常量；恒定的
+array # 数组；阵列
+object # 对象；物体
+string # 字符串；细绳
+boolean # 布尔值；真假值
+number # 数字；号码
