@@ -1,36 +1,69 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Volume2, RefreshCw, ArrowRight, CheckCircle2, XCircle } from 'lucide-react';
+import { Volume2, RefreshCw, ArrowRight, CheckCircle2, XCircle, Eye } from 'lucide-react';
 
 function App() {
   const [words, setWords] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [loading, setLoading] = useState(true);
-  const [gameState, setGameState] = useState('playing'); // playing, checking, correct, wrong
+  const [loading, setLoading] = useState(false);
+  const [gameState, setGameState] = useState('start'); // start, playing, checking, correct, wrong, finished
   const [userInputs, setUserInputs] = useState([]);
   const [revealedIndices, setRevealedIndices] = useState([]);
-  const inputRefs = useRef([]);
-
+  const [skippedWords, setSkippedWords] = useState([]);
+  const [isGameFinished, setIsGameFinished] = useState(false);
+  const [showHint, setShowHint] = useState(false);
+  
+  const [books, setBooks] = useState([]);
+  const [selectedBook, setSelectedBook] = useState('');
   const [difficulty, setDifficulty] = useState('simple'); // simple, general, medium, hard
 
+  const inputRefs = useRef([]);
+
   useEffect(() => {
-    fetchWords();
+    fetchBooks();
   }, []);
 
   useEffect(() => {
-    if (words.length > 0) {
+    if (gameState === 'playing' && words.length > 0) {
       initWord(currentIndex);
     }
-  }, [currentIndex, words, difficulty]); // Re-init if difficulty changes
+  }, [currentIndex, gameState]); 
 
-  const fetchWords = async () => {
+  const fetchBooks = async () => {
     try {
-      const res = await fetch('http://localhost:3001/api/words');
+      const res = await fetch('http://localhost:3002/api/books');
       const data = await res.json();
+      setBooks(data);
+    } catch (error) {
+      console.error('Failed to fetch books', error);
+    }
+  };
+
+  const startGame = async () => {
+    setLoading(true);
+    try {
+      let url = 'http://localhost:3002/api/words';
+      if (selectedBook) {
+        url += `?book=${encodeURIComponent(selectedBook)}`;
+      }
+      const res = await fetch(url);
+      const data = await res.json();
+      
+      if (data.length === 0) {
+        alert('No words found in this book!');
+        setLoading(false);
+        return;
+      }
+
       const shuffled = data.sort(() => Math.random() - 0.5);
       setWords(shuffled);
-      setLoading(false);
+      setSkippedWords([]);
+      setCurrentIndex(0);
+      setIsGameFinished(false);
+      setGameState('playing');
     } catch (error) {
       console.error('Failed to fetch words', error);
+      alert('Failed to start game');
+    } finally {
       setLoading(false);
     }
   };
@@ -83,7 +116,7 @@ function App() {
       inputs[idx] = word[idx];
     });
     setUserInputs(inputs);
-    setGameState('playing');
+    setShowHint(false);
     
     // Focus first empty input
     setTimeout(() => {
@@ -104,27 +137,22 @@ function App() {
   };
 
   const handleInput = (index, value) => {
-    if (gameState !== 'playing' && gameState !== 'wrong') return; // Allow editing if playing or wrong (retry)
+    if (gameState !== 'playing' && gameState !== 'wrong') return;
     
-    // Only allow single letter
     const char = value.slice(-1);
-    
     const newInputs = [...userInputs];
     newInputs[index] = char;
     setUserInputs(newInputs);
 
-    // Reset to playing if they edit after wrong
     if (gameState === 'wrong') {
       setGameState('playing');
     }
 
-    // Move to next empty input if char is entered
     if (char) {
       const nextEmpty = newInputs.findIndex((val, idx) => idx > index && val === '');
       if (nextEmpty !== -1 && inputRefs.current[nextEmpty]) {
         inputRefs.current[nextEmpty].focus();
       } else {
-        // Check if all filled
         if (newInputs.every(c => c !== '')) {
           startCheck(newInputs);
         }
@@ -134,7 +162,6 @@ function App() {
 
   const handleKeyDown = (index, e) => {
     if (e.key === 'Backspace' && !userInputs[index]) {
-      // Move to previous editable input
       let prev = index - 1;
       while (prev >= 0 && revealedIndices.includes(prev)) {
         prev--;
@@ -147,41 +174,184 @@ function App() {
 
   const startCheck = (inputs) => {
     setGameState('checking');
-    // Wait 3 seconds before showing result
+    // Reduced delay to 0.5s
     setTimeout(() => {
       checkAnswer(inputs);
-    }, 3000);
+    }, 500);
   };
 
   const checkAnswer = (inputs) => {
     const currentWord = words[currentIndex].word;
     const userWord = inputs.join('');
     
-    // Strict case comparison
     if (userWord === currentWord) {
       setGameState('correct');
       const audio = new Audio('/correct.mp3'); // Optional
-      // speakWord('Correct');
     } else {
       setGameState('wrong');
       speakWord('Wrong, try again');
     }
   };
 
+  const handlePass = () => {
+    const currentWordObj = words[currentIndex];
+    if (!skippedWords.find(w => w.word === currentWordObj.word)) {
+      setSkippedWords(prev => [...prev, currentWordObj]);
+    }
+    nextWord();
+  };
+
+  const handlePeek = () => {
+    setShowHint(true);
+    setTimeout(() => {
+      setShowHint(false);
+    }, 1000);
+  };
+
   const nextWord = () => {
     if (currentIndex < words.length - 1) {
       setCurrentIndex(prev => prev + 1);
+      setGameState('playing');
     } else {
-      // Loop back or finish?
-      setCurrentIndex(0); // Loop for now
-      // Maybe reshuffle?
-      const shuffled = [...words].sort(() => Math.random() - 0.5);
-      setWords(shuffled);
+      setIsGameFinished(true);
+      setGameState('finished');
+    }
+  };
+
+  const restartGame = (onlySkipped = false) => {
+    if (onlySkipped && skippedWords.length > 0) {
+      setWords([...skippedWords]);
+      setSkippedWords([]);
+      setCurrentIndex(0);
+      setIsGameFinished(false);
+      setGameState('playing');
+    } else {
+      setGameState('start');
+      setWords([]);
+      setSkippedWords([]);
+      setIsGameFinished(false);
     }
   };
 
   if (loading) return <div className="min-h-screen flex items-center justify-center bg-gray-100">Loading...</div>;
-  if (words.length === 0) return <div className="min-h-screen flex items-center justify-center bg-gray-100">No words found in words folder.</div>;
+
+  // Start Screen
+  if (gameState === 'start') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 flex flex-col items-center justify-center p-4 font-sans">
+        <div className="bg-white p-8 rounded-2xl shadow-xl max-w-md w-full text-center">
+          <div className="mb-6 flex justify-center">
+            <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
+              <Volume2 size={40} />
+            </div>
+          </div>
+          <h1 className="text-3xl font-bold text-gray-800 mb-2">Spelling Bee</h1>
+          <p className="text-gray-500 mb-8">Master your vocabulary with audio support</p>
+
+          <div className="space-y-4 mb-8 text-left">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Word Book</label>
+              <select 
+                value={selectedBook}
+                onChange={(e) => setSelectedBook(e.target.value)}
+                className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+              >
+                <option value="">All Words (Default)</option>
+                {books.map(f => (
+                  <option key={f} value={f}>{f}</option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Difficulty</label>
+              <select 
+                value={difficulty}
+                onChange={(e) => setDifficulty(e.target.value)}
+                className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+              >
+                <option value="simple">Simple (Hide 1 letter)</option>
+                <option value="general">General (Hide ~30%)</option>
+                <option value="medium">Medium (Hide ~50%)</option>
+                <option value="hard">Hard (Hide ~80%)</option>
+              </select>
+            </div>
+          </div>
+
+          <button 
+            onClick={startGame}
+            className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-lg shadow-lg shadow-blue-200 transition-all active:scale-95"
+          >
+            Start Challenge
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // Finished Screen
+  if (isGameFinished) {
+    return (
+      <div className="min-h-screen bg-slate-50 flex flex-col items-center p-8 font-sans">
+        <div className="max-w-4xl w-full bg-white rounded-2xl shadow-xl p-8">
+          <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">Session Complete!</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+             <div className="bg-blue-50 p-6 rounded-xl text-center">
+               <div className="text-4xl font-bold text-blue-600 mb-2">{words.length}</div>
+               <div className="text-gray-600">Total Words</div>
+             </div>
+             <div className="bg-green-50 p-6 rounded-xl text-center">
+               <div className="text-4xl font-bold text-green-600 mb-2">{words.length - skippedWords.length}</div>
+               <div className="text-gray-600">Correct</div>
+             </div>
+             <div className="bg-red-50 p-6 rounded-xl text-center">
+               <div className="text-4xl font-bold text-red-600 mb-2">{skippedWords.length}</div>
+               <div className="text-gray-600">Passed / Wrong</div>
+             </div>
+          </div>
+
+          {skippedWords.length > 0 && (
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold text-gray-700 mb-4">Review Mistakes (Passed Words)</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {skippedWords.map((item, idx) => (
+                  <div key={idx} className="border border-red-100 bg-red-50 rounded-lg p-4 flex flex-col gap-2">
+                    <div className="flex justify-between items-start">
+                      <span className="text-lg font-bold text-red-700">{item.word}</span>
+                      <button onClick={() => speakWord(item.word)} className="text-red-400 hover:text-red-600">
+                        <Volume2 size={16} />
+                      </button>
+                    </div>
+                    <p className="text-sm text-gray-600">{item.definition}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className="flex justify-center gap-4">
+            <button 
+              onClick={() => restartGame(false)}
+              className="px-6 py-3 bg-gray-800 text-white rounded-full font-medium hover:bg-gray-900 transition-colors flex items-center gap-2"
+            >
+              <RefreshCw size={18} /> Back to Menu
+            </button>
+            {skippedWords.length > 0 && (
+              <button 
+                onClick={() => restartGame(true)}
+                className="px-6 py-3 bg-red-600 text-white rounded-full font-medium hover:bg-red-700 transition-colors flex items-center gap-2"
+              >
+                <RefreshCw size={18} /> Review Mistakes
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (words.length === 0) return <div className="min-h-screen flex items-center justify-center bg-gray-100">No words found.</div>;
 
   const currentWordObj = words[currentIndex];
   const isCorrect = gameState === 'correct';
@@ -200,26 +370,12 @@ function App() {
         <div className="mt-4 flex justify-between items-center mb-8">
           <span className="text-gray-400 text-sm">Word {currentIndex + 1} of {words.length}</span>
           
-          <div className="flex items-center gap-2">
-            <select 
-              value={difficulty} 
-              onChange={(e) => setDifficulty(e.target.value)}
-              className="bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2"
-            >
-              <option value="simple">Simple (Hide 1)</option>
-              <option value="general">General (Hide ~30%)</option>
-              <option value="medium">Medium (Hide ~50%)</option>
-              <option value="hard">Hard (Hide ~80%)</option>
-            </select>
-
-            <button 
-              onClick={() => initWord(currentIndex)} 
-              className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-              title="Reset Word"
-            >
-              <RefreshCw size={20} className="text-gray-500" />
-            </button>
-          </div>
+          <button 
+            onClick={() => setGameState('start')} 
+            className="text-sm text-gray-500 hover:text-gray-800 underline"
+          >
+            Quit
+          </button>
         </div>
 
         {/* Definition Area */}
@@ -236,15 +392,23 @@ function App() {
         <div className="flex flex-wrap justify-center gap-2 mb-12">
           {currentWordObj.word.split('').map((char, idx) => {
             const isRevealed = revealedIndices.includes(idx);
-            const isUserCorrect = isCorrect; // If whole word is correct
             
+            // Determine display char
+            let displayChar = userInputs[idx] || '';
+            let isHint = false;
+            
+            if (showHint && !displayChar && !isRevealed) {
+              displayChar = char;
+              isHint = true;
+            }
+
             return (
               <div key={idx} className="flex flex-col items-center gap-2">
                 <input
                   ref={el => inputRefs.current[idx] = el}
                   type="text"
                   maxLength={1}
-                  value={userInputs[idx] || ''}
+                  value={displayChar}
                   disabled={isRevealed || isCorrect || gameState === 'checking'}
                   onChange={(e) => handleInput(idx, e.target.value)}
                   onKeyDown={(e) => handleKeyDown(idx, e)}
@@ -255,9 +419,11 @@ function App() {
                         ? 'border-green-500 bg-green-50 text-green-600'
                         : gameState === 'wrong'
                           ? 'border-red-500 bg-red-50 text-red-600'
-                          : userInputs[idx] 
-                            ? 'border-blue-500 bg-blue-50 text-blue-600'
-                            : 'border-gray-300 bg-white focus:border-blue-500 focus:bg-blue-50'
+                          : isHint
+                            ? 'border-yellow-400 bg-yellow-50 text-yellow-600'
+                            : userInputs[idx] 
+                              ? 'border-blue-500 bg-blue-50 text-blue-600'
+                              : 'border-gray-300 bg-white focus:border-blue-500 focus:bg-blue-50'
                     }
                     font-bold shadow-sm
                   `}
@@ -272,8 +438,25 @@ function App() {
           <button 
             onClick={() => speakWord(currentWordObj.word)}
             className="w-14 h-14 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center hover:bg-blue-200 transition-transform active:scale-95 shadow-sm"
+            title="Listen"
           >
             <Volume2 size={28} />
+          </button>
+
+          <button 
+            onClick={handlePeek}
+            className="w-14 h-14 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center hover:bg-yellow-200 transition-transform active:scale-95 shadow-sm"
+            title="Peek Answer (1s)"
+          >
+            <Eye size={28} />
+          </button>
+
+          <button 
+            onClick={handlePass}
+            className="w-14 h-14 rounded-full bg-red-100 text-red-600 flex items-center justify-center hover:bg-red-200 transition-transform active:scale-95 shadow-sm"
+            title="Pass / Skip"
+          >
+             PASS
           </button>
 
           {isCorrect && (
@@ -306,7 +489,6 @@ function App() {
 
         {isCorrect && (
           <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-10">
-             {/* Confetti or just a nice overlay could go here, keeping it simple for now */}
              <div className="bg-green-500 text-white px-6 py-3 rounded-full shadow-lg font-medium text-lg flex items-center gap-2 animate-bounce-short">
                <CheckCircle2 size={24} />
                Correct!

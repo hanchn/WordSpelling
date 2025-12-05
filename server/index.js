@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const PORT = 3001;
+const PORT = 3002;
 
 app.use(cors());
 app.use(express.json());
@@ -32,11 +32,43 @@ challenge # 挑战`;
   }
 }
 
+app.get('/api/books', async (req, res) => {
+  try {
+    await ensureWordsDir();
+    // Get all .txt files as books
+    const files = await glob('**/*.txt', { cwd: WORDS_DIR });
+    res.json(files);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to list books' });
+  }
+});
+
 app.get('/api/words', async (req, res) => {
   try {
     await ensureWordsDir();
-    // Find all .txt files in words directory (recursive)
-    const files = await glob('**/*.txt', { cwd: WORDS_DIR });
+    const { book } = req.query;
+    
+    let files = [];
+    if (book) {
+      // Specific book (file)
+      const safeBook = path.normalize(book).replace(/^(\.\.[\/\\])+/, '');
+      const fullPath = path.join(WORDS_DIR, safeBook);
+      
+      // Ensure it's still inside WORDS_DIR and exists
+      if (!fullPath.startsWith(WORDS_DIR)) {
+         return res.status(403).json({ error: 'Invalid book path' });
+      }
+      
+      try {
+        await fs.access(fullPath);
+        files = [safeBook];
+      } catch {
+        return res.json([]); // Book not found
+      }
+    } else {
+      // All files
+      files = await glob('**/*.txt', { cwd: WORDS_DIR });
+    }
     
     let allWords = [];
 
@@ -48,8 +80,6 @@ app.get('/api/words', async (req, res) => {
         const trimmed = line.trim();
         if (!trimmed) return;
         
-        // Split by first # or space? Let's stick to # for clear separation
-        // If no #, maybe just the word?
         const parts = trimmed.split('#');
         const word = parts[0].trim();
         const definition = parts.length > 1 ? parts[1].trim() : '';
