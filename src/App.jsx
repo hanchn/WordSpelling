@@ -8,7 +8,7 @@ function App() {
   const [gameState, setGameState] = useState('start'); // start, playing, checking, correct, wrong, finished
   const [userInputs, setUserInputs] = useState([]);
   const [revealedIndices, setRevealedIndices] = useState([]);
-  const [skippedWords, setSkippedWords] = useState([]);
+  const [mistakes, setMistakes] = useState([]); // Words that were passed or answered wrongly
   const [isGameFinished, setIsGameFinished] = useState(false);
   const [showHint, setShowHint] = useState(false);
   
@@ -68,7 +68,7 @@ function App() {
 
       const shuffled = data.sort(() => Math.random() - 0.5);
       setWords(shuffled);
-      setSkippedWords([]);
+      setMistakes([]);
       setCurrentIndex(0);
       setIsGameFinished(false);
       setGameState('playing');
@@ -202,13 +202,18 @@ function App() {
     } else {
       setGameState('wrong');
       speakWord('Wrong, try again');
+      // Record as mistake if not already recorded
+      const currentWordObj = words[currentIndex];
+      if (!mistakes.find(w => w.word === currentWordObj.word)) {
+        setMistakes(prev => [...prev, currentWordObj]);
+      }
     }
   };
 
   const handlePass = () => {
     const currentWordObj = words[currentIndex];
-    if (!skippedWords.find(w => w.word === currentWordObj.word)) {
-      setSkippedWords(prev => [...prev, currentWordObj]);
+    if (!mistakes.find(w => w.word === currentWordObj.word)) {
+      setMistakes(prev => [...prev, currentWordObj]);
     }
     nextWord();
   };
@@ -230,17 +235,17 @@ function App() {
     }
   };
 
-  const restartGame = (onlySkipped = false) => {
-    if (onlySkipped && skippedWords.length > 0) {
-      setWords([...skippedWords]);
-      setSkippedWords([]);
+  const restartGame = (onlyMistakes = false) => {
+    if (onlyMistakes && mistakes.length > 0) {
+      setWords([...mistakes]);
+      setMistakes([]);
       setCurrentIndex(0);
       setIsGameFinished(false);
       setGameState('playing');
     } else {
       setGameState('start');
       setWords([]);
-      setSkippedWords([]);
+      setMistakes([]);
       setIsGameFinished(false);
     }
   };
