@@ -348,25 +348,34 @@ function App() {
           </div>
 
           {mistakes.length > 0 && (
-            <div className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-700 mb-4">Review Mistakes</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="mb-8 print:block">
+              <div className="flex justify-between items-center mb-4">
+                 <h3 className="text-xl font-semibold text-gray-700">Review Mistakes</h3>
+                 <button 
+                   onClick={() => window.print()}
+                   className="text-blue-600 hover:text-blue-800 flex items-center gap-2 text-sm font-medium print:hidden"
+                 >
+                   <Printer size={16} /> Print Mistakes
+                 </button>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 print:grid-cols-2 print:gap-2">
                 {mistakes.map((item, idx) => (
-                  <div key={idx} className="border border-red-100 bg-red-50 rounded-lg p-4 flex flex-col gap-2">
+                  <div key={idx} className="border border-red-100 bg-red-50 rounded-lg p-4 flex flex-col gap-2 print:border-gray-300 print:bg-white print:break-inside-avoid">
                     <div className="flex justify-between items-start">
-                      <span className="text-lg font-bold text-red-700">{item.word}</span>
-                      <button onClick={() => speakWord(item.word)} className="text-red-400 hover:text-red-600">
+                      <span className="text-lg font-bold text-red-700 print:text-black">{item.word}</span>
+                      <button onClick={() => speakWord(item.word)} className="text-red-400 hover:text-red-600 print:hidden">
                         <Volume2 size={16} />
                       </button>
                     </div>
                     <p className="text-sm text-gray-600">{item.definition}</p>
+                    <div className="hidden print:block mt-4 border-b border-gray-200 h-8"></div>
                   </div>
                 ))}
               </div>
             </div>
           )}
 
-          <div className="flex justify-center gap-4">
+          <div className="flex justify-center gap-4 print:hidden">
             <button 
               onClick={() => restartGame(false)}
               className="px-6 py-3 bg-gray-800 text-white rounded-full font-medium hover:bg-gray-900 transition-colors flex items-center gap-2"
