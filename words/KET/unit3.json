@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "bookId": "KET",
+    "unitId": "unit3",
+    "title": "KET Unit 3: School and Work",
+    "version": "1.0"
+  },
+  "words": [
+    {"word": "board", "definition": "黑板；布告板", "phonetic": "/bɔːd/", "examples": []},
+    {"word": "book", "definition": "书", "phonetic": "/bʊk/", "examples": []},
+    {"word": "class", "definition": "班级；课", "phonetic": "/klɑːs/", "examples": []},
+    {"word": "desk", "definition": "书桌", "phonetic": "/desk/", "examples": []},
+    {"word": "dictionary", "definition": "字典", "phonetic": "/ˈdɪk.ʃən.ər.i/", "examples": []},
+    {"word": "exam", "definition": "考试", "phonetic": "/ɪɡˈzæm/", "examples": []},
+    {"word": "homework", "definition": "家庭作业", "phonetic": "/ˈhəʊm.wɜːk/", "examples": []},
+    {"word": "lesson", "definition": "课", "phonetic": "/ˈles.ən/", "examples": []},
+    {"word": "library", "definition": "图书馆", "phonetic": "/ˈlaɪ.brər.i/", "examples": []},
+    {"word": "note", "definition": "笔记", "phonetic": "/nəʊt/", "examples": []},
+    {"word": "pen", "definition": "钢笔", "phonetic": "/pen/", "examples": []},
+    {"word": "pencil", "definition": "铅笔", "phonetic": "/ˈpen.səl/", "examples": []},
+    {"word": "student", "definition": "学生", "phonetic": "/ˈstjuː.dənt/", "examples": []},
+    {"word": "teacher", "definition": "老师", "phonetic": "/ˈtiː.tʃər/", "examples": []},
+    {"word": "uniform", "definition": "制服", "phonetic": "/ˈjuː.nɪ.fɔːm/", "examples": []}
+  ]
+}

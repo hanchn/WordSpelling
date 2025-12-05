@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "bookId": "PET",
+    "unitId": "unit2",
+    "title": "PET Unit 2: House and Home",
+    "version": "1.0"
+  },
+  "words": [
+    {"word": "accommodation", "definition": "住宿", "phonetic": "/əˌkɒm.əˈdeɪ.ʃən/", "examples": []},
+    {"word": "balcony", "definition": "阳台", "phonetic": "/ˈbæl.kə.ni/", "examples": []},
+    {"word": "basement", "definition": "地下室", "phonetic": "/ˈbeɪs.mənt/", "examples": []},
+    {"word": "carpet", "definition": "地毯", "phonetic": "/ˈkɑː.pɪt/", "examples": []},
+    {"word": "ceiling", "definition": "天花板", "phonetic": "/ˈsiː.lɪŋ/", "examples": []},
+    {"word": "corridor", "definition": "走廊", "phonetic": "/ˈkɒr.ɪ.dɔːr/", "examples": []},
+    {"word": "cottage", "definition": "小屋；村舍", "phonetic": "/ˈkɒt.ɪdʒ/", "examples": []},
+    {"word": "cupboard", "definition": "橱柜", "phonetic": "/ˈkʌb.əd/", "examples": []},
+    {"word": "curtain", "definition": "窗帘", "phonetic": "/ˈkɜː.tən/", "examples": []},
+    {"word": "downstairs", "definition": "在楼下", "phonetic": "/ˌdaʊnˈsteəz/", "examples": []},
+    {"word": "entrance", "definition": "入口", "phonetic": "/ˈen.trəns/", "examples": []},
+    {"word": "furniture", "definition": "家具", "phonetic": "/ˈfɜː.nɪ.tʃər/", "examples": []},
+    {"word": "garage", "definition": "车库", "phonetic": "/ˈɡær.ɑːʒ/", "examples": []},
+    {"word": "heating", "definition": "供暖", "phonetic": "/ˈhiː.tɪŋ/", "examples": []},
+    {"word": "kitchen", "definition": "厨房", "phonetic": "/ˈkɪtʃ.ən/", "examples": []}
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "bookId": "PET",
+    "unitId": "unit3",
+    "title": "PET Unit 3: Hobbies and Sport",
+    "version": "1.0"
+  },
+  "words": [
+    {"word": "athlete", "definition": "运动员", "phonetic": "/ˈæθ.liːt/", "examples": []},
+    {"word": "badminton", "definition": "羽毛球", "phonetic": "/ˈbæd.mɪn.tən/", "examples": []},
+    {"word": "champion", "definition": "冠军", "phonetic": "/ˈtʃæm.pi.ən/", "examples": []},
+    {"word": "competition", "definition": "比赛；竞争", "phonetic": "/ˌkɒm.pəˈtɪʃ.ən/", "examples": []},
+    {"word": "court", "definition": "球场；法庭", "phonetic": "/kɔːt/", "examples": []},
+    {"word": "cyclist", "definition": "骑自行车的人", "phonetic": "/ˈsaɪ.klɪst/", "examples": []},
+    {"word": "equipment", "definition": "装备", "phonetic": "/ɪˈkwɪp.mənt/", "examples": []},
+    {"word": "festival", "definition": "节日", "phonetic": "/ˈfes.tɪ.vəl/", "examples": []},
+    {"word": "gymnastics", "definition": "体操", "phonetic": "/dʒɪmˈnæs.tɪks/", "examples": []},
+    {"word": "helmet", "definition": "头盔", "phonetic": "/ˈhel.mət/", "examples": []},
+    {"word": "instrument", "definition": "乐器；仪器", "phonetic": "/ˈɪn.strə.mənt/", "examples": []},
+    {"word": "leisure", "definition": "闲暇", "phonetic": "/ˈleʒ.ər/", "examples": []},
+    {"word": "match", "definition": "比赛；火柴", "phonetic": "/mætʃ/", "examples": []},
+    {"word": "member", "definition": "成员", "phonetic": "/ˈmem.bər/", "examples": []},
+    {"word": "stadium", "definition": "体育场", "phonetic": "/ˈsteɪ.di.əm/", "examples": []}
+  ]
+}

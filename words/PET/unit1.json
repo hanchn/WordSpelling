@@ -1,1 +1,25 @@
-{"meta":{"bookId":"PET","unitId":"unit1","version":"1.0"},"words":[{"word":"accommodation","definition":"住宿","phonetic":"","examples":[]},{"word":"ambitious","definition":"有抱负的","phonetic":"","examples":[]}]}
+{
+  "meta": {
+    "bookId": "PET",
+    "unitId": "unit1",
+    "title": "PET Unit 1: Personal Identification",
+    "version": "1.0"
+  },
+  "words": [
+    {"word": "anxious", "definition": "焦虑的", "phonetic": "/ˈæŋk.ʃəs/", "examples": []},
+    {"word": "beard", "definition": "胡须", "phonetic": "/bɪəd/", "examples": []},
+    {"word": "blonde", "definition": "金发的", "phonetic": "/blɒnd/", "examples": []},
+    {"word": "character", "definition": "性格；角色", "phonetic": "/ˈkær.ək.tər/", "examples": []},
+    {"word": "cheerful", "definition": "快乐的", "phonetic": "/ˈtʃɪə.fəl/", "examples": []},
+    {"word": "confident", "definition": "自信的", "phonetic": "/ˈkɒn.fɪ.dənt/", "examples": []},
+    {"word": "curly", "definition": "卷曲的", "phonetic": "/ˈkɜː.li/", "examples": []},
+    {"word": "elderly", "definition": "年长的", "phonetic": "/ˈel.dəl.i/", "examples": []},
+    {"word": "embarrassed", "definition": "尴尬的", "phonetic": "/ɪmˈbær.əst/", "examples": []},
+    {"word": "generous", "definition": "慷慨的", "phonetic": "/ˈdʒen.ər.əs/", "examples": []},
+    {"word": "handsome", "definition": "英俊的", "phonetic": "/ˈhæn.səm/", "examples": []},
+    {"word": "identity", "definition": "身份", "phonetic": "/aɪˈden.tə.ti/", "examples": []},
+    {"word": "miserable", "definition": "痛苦的", "phonetic": "/ˈmɪz.ər.ə.bəl/", "examples": []},
+    {"word": "patient", "definition": "有耐心的", "phonetic": "/ˈpeɪ.ʃənt/", "examples": []},
+    {"word": "reliable", "definition": "可靠的", "phonetic": "/rɪˈlaɪ.ə.bəl/", "examples": []}
+  ]
+}
