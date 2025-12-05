@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const PORT = 3002;
+const PORT = 3003;
 
 app.use(cors());
 app.use(express.json());
@@ -41,19 +41,16 @@ app.get('/api/structure', async (req, res) => {
     // Read root directory
     const entries = await fs.readdir(WORDS_DIR, { withFileTypes: true });
     
-    // 1. Root files (treat 'Root' as a book name or just add them to a default list?)
-    // Let's handle directories as Books
-    
     for (const entry of entries) {
       if (entry.isDirectory()) {
         const dirName = entry.name;
         const dirPath = path.join(WORDS_DIR, dirName);
-        // Get txt files in this dir
-        const files = await glob('*.txt', { cwd: dirPath });
+        // Get json files in this dir
+        const files = await glob('*.json', { cwd: dirPath });
         if (files.length > 0) {
           structure[dirName] = files;
         }
-      } else if (entry.isFile() && entry.name.endsWith('.txt')) {
+      } else if (entry.isFile() && entry.name.endsWith('.json')) {
         // Files in root
         if (!structure['Default']) {
           structure['Default'] = [];
@@ -75,18 +72,15 @@ app.get('/api/words', async (req, res) => {
     const { book, file } = req.query;
     
     let searchCwd = WORDS_DIR;
-    let searchPattern = '**/*.txt';
+    let searchPattern = '**/*.json';
 
     if (book) {
-      // If book is provided, limit to that folder
-      // Handle "Default" special case
       if (book === 'Default') {
         searchCwd = WORDS_DIR;
-        searchPattern = '*.txt'; // Only root files
+        searchPattern = '*.json';
       } else {
         const safeBook = path.basename(book);
         searchCwd = path.join(WORDS_DIR, safeBook);
-        // Check if folder exists
         try {
           await fs.access(searchCwd);
         } catch {
@@ -94,49 +88,35 @@ app.get('/api/words', async (req, res) => {
         }
         
         if (file) {
-          // If specific file is selected
           const safeFile = path.basename(file);
           searchPattern = safeFile;
         } else {
-          // All txt in folder
-          searchPattern = '*.txt';
+          searchPattern = '*.json';
         }
       }
     }
 
-    // Find files
     const files = await glob(searchPattern, { cwd: searchCwd });
     
     let allWords = [];
 
     for (const f of files) {
       const fullPath = path.join(searchCwd, f);
-      // If we are in Default (root), we need to make sure we don't pick up files from subdirs if pattern was **/*.txt
-      // But for Default we used *.txt, so it's fine.
       
-      // Check if it's a file (glob might return dirs if configured wrong, but default is fine)
       try {
         const content = await fs.readFile(fullPath, 'utf-8');
-        const lines = content.split('\n');
+        const json = JSON.parse(content);
         
-        lines.forEach(line => {
-          const trimmed = line.trim();
-          if (!trimmed) return;
-          
-          const parts = trimmed.split('#');
-          const word = parts[0].trim();
-          const definition = parts.length > 1 ? parts[1].trim() : '';
-          
-          if (word) {
-            allWords.push({
-              word,
-              definition,
-              source: book ? (file ? file : `${book}/${f}`) : f
-            });
-          }
-        });
+        if (json.words && Array.isArray(json.words)) {
+           // Map JSON words to our internal format (ensure backward compat if needed)
+           const mappedWords = json.words.map(w => ({
+             ...w,
+             source: book ? (file ? file : `${book}/${f}`) : f
+           }));
+           allWords.push(...mappedWords);
+        }
       } catch (e) {
-        // ignore read errors
+        console.error('Error parsing JSON:', fullPath, e);
       }
     }
 

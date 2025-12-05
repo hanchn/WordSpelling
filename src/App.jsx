@@ -31,7 +31,7 @@ function App() {
 
   const fetchStructure = async () => {
     try {
-      const res = await fetch('http://localhost:3002/api/structure');
+      const res = await fetch('http://localhost:3003/api/structure');
       const data = await res.json();
       setStructure(data);
       // Optionally select first book
@@ -47,7 +47,7 @@ function App() {
   const startGame = async () => {
     setLoading(true);
     try {
-      let url = 'http://localhost:3002/api/words';
+      let url = 'http://localhost:3003/api/words';
       const params = new URLSearchParams();
       
       if (selectedBook) {
@@ -265,15 +265,34 @@ function App() {
               <label className="block text-sm font-medium text-gray-700 mb-1">Word Book</label>
               <select 
                 value={selectedBook}
-                onChange={(e) => setSelectedBook(e.target.value)}
+                onChange={(e) => {
+                  setSelectedBook(e.target.value);
+                  setSelectedFile(''); // Reset file when book changes
+                }}
                 className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all"
               >
-                <option value="">All Words (Default)</option>
-                {books.map(f => (
-                  <option key={f} value={f}>{f}</option>
+                <option value="">Select a Book...</option>
+                {Object.keys(structure).map(book => (
+                  <option key={book} value={book}>{book}</option>
                 ))}
               </select>
             </div>
+
+            {selectedBook && structure[selectedBook] && (
+              <div className="animate-fade-in">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Select Unit</label>
+                <select 
+                  value={selectedFile}
+                  onChange={(e) => setSelectedFile(e.target.value)}
+                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+                >
+                  <option value="">All Units (Default)</option>
+                  {structure[selectedBook].map(file => (
+                    <option key={file} value={file}>{file.replace('.json', '')}</option>
+                  ))}
+                </select>
+              </div>
+            )}
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Difficulty</label>

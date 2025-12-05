@@ -1,0 +1,22 @@
+{
+  "meta": {
+    "bookId": "CET4",
+    "unitId": "unit2",
+    "title": "unit2",
+    "version": "1.0"
+  },
+  "words": [
+    {
+      "word": "abnormal",
+      "definition": "反常的",
+      "phonetic": "",
+      "examples": []
+    },
+    {
+      "word": "aboard",
+      "definition": "在船上",
+      "phonetic": "",
+      "examples": []
+    }
+  ]
+}

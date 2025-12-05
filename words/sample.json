@@ -1,0 +1,100 @@
+{
+  "meta": {
+    "bookId": "Default",
+    "unitId": "sample",
+    "title": "sample",
+    "version": "1.0"
+  },
+  "words": [
+    {
+      "word": "test",
+      "definition": "试验；测试；检测",
+      "phonetic": "",
+      "examples": []
+    },
+    {
+      "word": "spelling",
+      "definition": "拼写；拼字",
+      "phonetic": "",
+      "examples": []
+    },
+    {
+      "word": "computer",
+      "definition": "计算机；电脑",
+      "phonetic": "",
+      "examples": []
+    },
+    {
+      "word": "algorithm",
+      "definition": "算法；互算法",
+      "phonetic": "",
+      "examples": []
+    },
+    {
+      "word": "developer",
+      "definition": "开发者；程序员",
+      "phonetic": "",
+      "examples": []
+    },
+    {
+      "word": "challenge",
+      "definition": "挑战；怀疑",
+      "phonetic": "",
+      "examples": []
+    },
+    {
+      "word": "interface",
+      "definition": "界面；接口",
+      "phonetic": "",
+      "examples": []
+    },
+    {
+      "word": "function",
+      "definition": "函数；功能",
+      "phonetic": "",
+      "examples": []
+    },
+    {
+      "word": "variable",
+      "definition": "变量；可变的",
+      "phonetic": "",
+      "examples": []
+    },
+    {
+      "word": "constant",
+      "definition": "常量；恒定的",
+      "phonetic": "",
+      "examples": []
+    },
+    {
+      "word": "array",
+      "definition": "数组；阵列",
+      "phonetic": "",
+      "examples": []
+    },
+    {
+      "word": "object",
+      "definition": "对象；物体",
+      "phonetic": "",
+      "examples": []
+    },
+    {
+      "word": "string",
+      "definition": "字符串；细绳",
+      "phonetic": "",
+      "examples": []
+    },
+    {
+      "word": "boolean",
+      "definition": "布尔值；真假值",
+      "phonetic": "",
+      "examples": []
+    },
+    {
+      "word": "number",
+      "definition": "数字；号码",
+      "phonetic": "",
+      "examples": []
+    }
+  ]
+}

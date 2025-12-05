@@ -1,0 +1,22 @@
+{
+  "meta": {
+    "bookId": "TOEFL",
+    "unitId": "list1",
+    "title": "list1",
+    "version": "1.0"
+  },
+  "words": [
+    {
+      "word": "bacteria",
+      "definition": "细菌",
+      "phonetic": "",
+      "examples": []
+    },
+    {
+      "word": "balance",
+      "definition": "平衡",
+      "phonetic": "",
+      "examples": []
+    }
+  ]
+}

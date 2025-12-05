@@ -1,0 +1,22 @@
+{
+  "meta": {
+    "bookId": "CET4",
+    "unitId": "unit1",
+    "title": "unit1",
+    "version": "1.0"
+  },
+  "words": [
+    {
+      "word": "abandon",
+      "definition": "放弃",
+      "phonetic": "",
+      "examples": []
+    },
+    {
+      "word": "ability",
+      "definition": "能力",
+      "phonetic": "",
+      "examples": []
+    }
+  ]
+}
